@@ -16,13 +16,11 @@ def train(config, train_log):
 
         config["model"].train()
         for batch_id, (comment, label) in tqdm(enumerate(config["train_loader"])):
-            print(batch_id)
-            exit()
-            input_ids = comment["input_ids"].squeeze().long().to(config["device"])
-            token_type_ids = comment["token_type_ids"].squeeze().long().to(config["device"])
+            input_ids = comment["input_ids"].squeeze(axis=-2).long().to(config["device"])
+            token_type_ids = comment["token_type_ids"].squeeze(axis=-2).long().to(config["device"])
             label = label.long().to(config["device"])
 
-            out = config["model"](input_ids, token_type_ids, comment["attention_mask"].squeeze().to(config["device"]))
+            out = config["model"](input_ids, token_type_ids, comment["attention_mask"].to(config["device"]))
 
             config["optim"].zero_grad()
             loss = config["loss"](out, label)

@@ -19,8 +19,10 @@ def get_model_args():
     model_parser.add_argument("--max-len", default=128)
     model_parser.add_argument("--num-labels", default=2)
     model_parser.add_argument("--dr-rate", default=None, help="DROPOUT RATE")
-    model_parser.add_argument("--hidden-size", default=768)
+    # model_parser.add_argument("--hidden-size", default=768)
     model_parser.add_argument("--device", default="cuda:1")
+    # model_parser.add_argument("--modelpath", default="klue/bert-base")
+    model_parser.add_argument("--modelpath", default="BM-K/KoMiniLM")
 
     args = model_parser.parse_args()
     return args

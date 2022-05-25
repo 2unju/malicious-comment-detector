@@ -6,11 +6,11 @@ from transformers import AdamW
 from transformers import AutoModel, AutoTokenizer
 
 from dataset import BERTDataset
-from model import MaliciousCommentDetector
+from model import MaliciousCommentDetector, MaliciousCommentDetectorwithKoMiniLM
 
 
 def get_train_config(dataset_args, model_args, train_args):
-    tok = AutoTokenizer.from_pretrained("klue/bert-base")
+    tok = AutoTokenizer.from_pretrained(model_args.modelpath)
     trainset_config = {
         "datapath": dataset_args.trainpath,
         "tokenizer": tok,
@@ -30,8 +30,14 @@ def get_train_config(dataset_args, model_args, train_args):
     trainset = BERTDataset(trainset_config)
     validset = BERTDataset(validset_config)
 
-    bert = AutoModel.from_pretrained("klue/bert-base").to(model_args.device)
-    model = MaliciousCommentDetector(bert, model_args).to(model_args.device)
+    bert = AutoModel.from_pretrained(model_args.modelpath).to(model_args.device)
+    if model_args.modelpath == "klue/bert-base":
+        model = MaliciousCommentDetector(bert, model_args).to(model_args.device)
+    elif model_args.modelpath == "BM-K/KoMiniLM":
+        model = MaliciousCommentDetectorwithKoMiniLM(bert, model_args).to(model_args.device)
+    else:
+        print("No Available Model")
+        exit()
 
     criterion = nn.CrossEntropyLoss()
 
@@ -77,7 +83,7 @@ def get_train_log():
 
 
 def get_test_config(dataset_args, model_args, train_args):
-    tok = AutoTokenizer.from_pretrained("klue/bert-base")
+    tok = AutoTokenizer.from_pretrained(model_args.modelpath)
     testset_config = {
         "datapath": dataset_args.testpath,
         "tokenizer": tok,
@@ -88,14 +94,21 @@ def get_test_config(dataset_args, model_args, train_args):
     }
     testset = BERTDataset(testset_config)
 
-    bert = AutoModel.from_pretrained("klue/bert-base").to(model_args.device)
-    model = MaliciousCommentDetector(bert, model_args).to(model_args.device)
+    bert = AutoModel.from_pretrained(model_args.modelpath).to(model_args.device)
+    if model_args.modelpath == "klue/bert-base":
+        model = MaliciousCommentDetector(bert, model_args).to(model_args.device)
+    elif model_args.modelpath == "BM-K/KoMiniLM":
+        model = MaliciousCommentDetectorwithKoMiniLM(bert, model_args).to(model_args.device)
+    else:
+        print("No Available Model")
+        exit()
 
     criterion = nn.CrossEntropyLoss()
 
     config = {
         "model": model,
-        "test_loader": torch.utils.data.DataLoader(testset, batch_size=train_args.batch_size),        "loss": criterion,
+        "test_loader": torch.utils.data.DataLoader(testset, batch_size=1),
+        "loss": criterion,
         "epoch": train_args.epochs,
         "device": train_args.device,
         "max_grad_norm": train_args.max_grad_norm
