@@ -20,6 +20,11 @@ python train.py
 학습에 사용되는 파라미터는 arguments.py에서 변경 가능
 
 ## Result
-|Train acc|Validation acc|Test acc|  
-|:---:|:---:|:---:|  
-|0.84|0.90|0.89|
+### klue/bet-base
+|Train acc|Validation acc|Test acc|Train Time per Epoch (sec)|Inference Time (sec)|  
+|:---:|:---:|:---:|:---:|:---:|  
+|0.84|0.90|0.89|74|6.63|
+### KoMiniLM
+|Train acc|Validation acc|Test acc|Train Time per Epoch (sec)|Inference Time (sec)|  
+|:---:|:---:|:---:|:---:|:---:|  
+|0.83|0.88|0.87|18|3.55|
