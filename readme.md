@@ -22,5 +22,5 @@ python train.py
 ## Result
 ||Test Acc|Inference Time (sec)|  
 |:---:|:---:|:---:|
-|Kobert(klue/bert-base)|0.89|0.012|
+|KoBERT(klue/bert-base)|0.89|0.012|
 |KoMiniLM|0.87|0.007|
