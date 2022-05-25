@@ -21,10 +21,10 @@ python train.py
 
 ## Result
 ### klue/bet-base
-|Train acc|Validation acc|Test acc|Train Time per Epoch (sec)|Inference Time (sec)|  
-|:---:|:---:|:---:|:---:|:---:|  
-|0.84|0.90|0.89|74|6.63|
+|Test acc|Inference Time (sec)|  
+|:---:|:---:|
+|0.89|0.012|
 ### KoMiniLM
-|Train acc|Validation acc|Test acc|Train Time per Epoch (sec)|Inference Time (sec)|  
-|:---:|:---:|:---:|:---:|:---:|  
-|0.83|0.88|0.87|18|3.55|
+|Test acc|Inference Time (sec)|  
+|:---:|:---:|  
+|0.87|0.007|
