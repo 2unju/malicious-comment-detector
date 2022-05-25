@@ -20,11 +20,7 @@ python train.py
 학습에 사용되는 파라미터는 arguments.py에서 변경 가능
 
 ## Result
-### klue/bet-base
-|Test acc|Inference Time (sec)|  
-|:---:|:---:|
-|0.89|0.012|
-### KoMiniLM
-|Test acc|Inference Time (sec)|  
-|:---:|:---:|  
-|0.87|0.007|
+||Test Acc|Inference Time (sec)|  
+|:---:|:---:|:---:|
+|Kobert(klue/bert-base)|0.89|0.012|
+|KoMiniLM|0.87|0.007|
