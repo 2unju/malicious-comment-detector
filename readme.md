@@ -1,6 +1,6 @@
 # Malicious Comment Detector
 - Model
-    - [KLUE-BERT(base)](https://github.com/KLUE-benchmark/KLUE)
+    - [KoMiniLM](https://github.com/KLUE-benchmark/KLUE](https://github.com/BM-K/KoMiniLM))
 - Dataset
     - [한국어 악성댓글 데이터셋](https://github.com/ZIZUN/korean-malicious-comments-dataset)
       - train:dev:test = 9000:500:500으로 split
@@ -22,5 +22,5 @@ python train.py
 ## Result
 ||Test Acc|Inference Time (sec)|  
 |:---:|:---:|:---:|
-|KoBERT(klue/bert-base)|0.89|0.012|
+|KLUE-BERT(base)|0.89|0.012|
 |KoMiniLM|0.87|0.007|
